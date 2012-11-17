@@ -1,0 +1,6 @@
+<%= form_for @dotimage do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.file_field :resized_image %>
+  <%= f.submit %>
+<% end %>
