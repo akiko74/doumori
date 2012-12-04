@@ -1,6 +1,12 @@
-<%= form_for @dotimage do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.file_field :resized_image %>
-  <%= f.submit %>
-<% end %>
+<div class = 'row'>
+  <div class = 'span9'>ドット絵にしたいPNGファイルをアップロードします
+ <div class = 'row'>
+ <%= form_for @dotimage do |f| %>
+  <div class = 'span2'><%= f.label :name %></div>
+  <div class = 'span3'><%= f.text_field :name %></div>
+  <div class = 'span2'><%= f.file_field :resized_image %></div>
+  <div class = 'span2'><%= f.submit %></div>
+ <% end %>
+ </div>
+</div>
+</div>

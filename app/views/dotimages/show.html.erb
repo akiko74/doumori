@@ -1,2 +1,33 @@
-<%= image_tag(@dotimage.resized_image.url(:small), :size => '320x320') %>
-<%= image_tag(@dotimage.resized_image.url(:new_image), :size => '320x320') %>
+<div class = 'container'>
+<div class = 'span6'>
+<%= image_tag(@dotimage.resized_image.url(:small), :size => '32x32') %>
+<div class = 'span6'><%= image_tag(@dotimage.resized_image.url(:new_image), :size => '32x32') %>
+</div>
+</div>
+<div class = 'span12'>
+<table class = 'table table-bordered table-condensed'>
+<thead>
+<tr>
+  <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+  <th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th>
+  <th>21</th><th>22</th><th>23</th><th>24</th><th>25</th><th>26</th><th>27</th><th>28</th><th>29</th><th>30</th>
+  <th>31</th><th>32</th>
+</tr>
+</thead>
+<tbody>
+<% x = 0 %>
+<% for y in 0..31 %>
+  <tr>
+  <% @dotimage.palettes.where(:position_y => y).order('position_x ASC').each do |palette| %>
+    <td bgcolor="<%= palette.color_id %>"><%= palette.color.name %></td>
+  <% end %>
+  <% y = y +1 %>
+</tr>
+<% end %>
+</tbody>
+</table>
+<% @dotimage.palettes.select(:color_id).uniq.each do |color| %>
+  <%= color.color.name %><br />
+<% end %>
+</div>
+</div>

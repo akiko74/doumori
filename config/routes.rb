@@ -1,5 +1,8 @@
 Doumori::Application.routes.draw do
 
+  resources :colors
+
+
   resources :dotimages
   root :to => 'dotimage#index'
   # The priority is based upon order of creation:

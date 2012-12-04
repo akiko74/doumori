@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121116043921) do
+ActiveRecord::Schema.define(:version => 20121126102831) do
+
+  create_table "colors", :force => true do |t|
+    t.string   "name"
+    t.integer  "r"
+    t.integer  "g"
+    t.integer  "b"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "dotimages", :force => true do |t|
     t.string   "name"
@@ -21,6 +30,16 @@ ActiveRecord::Schema.define(:version => 20121116043921) do
     t.datetime "resized_image_updated_at"
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
+    t.string   "palette"
+  end
+
+  create_table "palettes", :force => true do |t|
+    t.integer  "dotimage_id"
+    t.integer  "position_x"
+    t.integer  "position_y"
+    t.integer  "color_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
 end
