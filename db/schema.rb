@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121126102831) do
+ActiveRecord::Schema.define(:version => 20121204230504) do
 
   create_table "colors", :force => true do |t|
     t.string   "name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20121126102831) do
     t.integer  "b"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "hex"
   end
 
   create_table "dotimages", :force => true do |t|

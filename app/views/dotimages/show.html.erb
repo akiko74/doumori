@@ -19,7 +19,7 @@
 <% for y in 0..31 %>
   <tr>
   <% @dotimage.palettes.where(:position_y => y).order('position_x ASC').each do |palette| %>
-    <td bgcolor="<%= palette.color_id %>"><%= palette.color.name %></td>
+    <td bgcolor="#<%= Color.find(palette.color_id).hex %>"><%= palette.color.name %></td>
   <% end %>
   <% y = y +1 %>
 </tr>

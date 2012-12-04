@@ -1,4 +1,4 @@
 class Color < ActiveRecord::Base
-  attr_accessible :b, :g, :name, :r
+  attr_accessible :b, :hex, :g, :name, :r
   has_many :palettes
 end
