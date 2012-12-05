@@ -105,7 +105,7 @@ class DotimagesController < ApplicationController
         end
         cube_array.delete(nil)
 
-      while cube_array.count < (15 - color_palette.count)
+      while cube_array.count < (15-color_palette.count)
         cube_array_repeat = cube_array.pop #cube_nが取れる
         cube_array.each do |color|
           color_palette << [(color[0][1]+color[0][0])/2, (color[1][1]+color[1][0])/2, (color[2][1]+color[2][0])/2]
@@ -151,7 +151,26 @@ class DotimagesController < ApplicationController
              set_cube << cube
           end
         end
+        cube_array = []
+        set_cube.each do |cube|
+          cube_count = 0
+          palette.each do |count|
+            if (cube[0][0]..cube[0][1]).member?(count[0]) && (cube[1][0]..cube[1][1]).member?(count[1]) && (cube[2][0]..cube[2][1]).member?(count[2])
+            cube_count += 1
+            end
+          end
+          if cube_array[cube_count].nil?
+            cube_array[cube_count] = cube
+          else
+            while cube_array[cube_count].present?
+              cube_count += 1
+            end
+            cube_array[cube_count] = cube
+          end
+        end
+        cube_array.delete(nil)
       end
+
         #ループ終了後はset_cubeを多い順に並べてパレットに入れていく
         #cube1-8をset_cubeに入れる
         cube_array = []
@@ -172,7 +191,6 @@ class DotimagesController < ApplicationController
           end
         end
         cube_array.delete(nil)
-
         cube_array.reverse.each do |color|
           if color_palette.count < 15
           color_palette << [(color[0][1] + color[0][0])/2, (color[1][1] + color[1][0])/2, (color[2][1] + color[2][0])/2]
@@ -199,8 +217,8 @@ class DotimagesController < ApplicationController
           end
           color_fix = distance.index(distance.min)
           palette.color_id = Color.where("r = ? AND g = ? AND b = ?", final_palette[color_fix][0], final_palette[color_fix][1], final_palette[color_fix][2]).first.id
+          palette.save
         end
-        @dotimage.save
         redirect_to dotimage_path(@dotimage)
   end
 
