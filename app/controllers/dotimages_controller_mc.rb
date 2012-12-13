@@ -53,10 +53,9 @@ class DotimagesController < ApplicationController
         min_g = image_palettes.min_by {|green| green.color.g}.color.g
         max_b = image_palettes.max_by {|blue| blue.color.b}.color.b
         min_b = image_palettes.min_by {|blue| blue.color.b}.color.b
-        length = 255
         #最大値を持つ辺の中央で分割し８個のcubeを作る
 
-        while cube_array.count < 15 && length != 0 do
+        while cube_array.count < 15 do
           length = ([max_r- min_r, max_g- min_g, max_b-min_b].max)/2
             if ([max_r-min_r, max_g-min_g, max_b-min_b].max) == max_r-min_r
               mean = max_r-length
@@ -89,47 +88,51 @@ class DotimagesController < ApplicationController
               end
         #paletteの色毎にcubeを当てはめてどのエリアが一番多いか判定する。
         #色の数順に配列を作る
-            cube_define = []
             set_cube.each do |cube|
               color_ex = []
                 original_palettes.each do |palette|
-                  if (cube[0][0]..cube[0][1]).member?(palette.color.r) && (cube[1][0]..cube[1][1]).member?(palette.color.g) && (cube[2][0]..cube[2][1]).member?(palette.color.b)
+                  if (cube[0][0]-1..cube[0][1]+1).member?(palette.color.r) && (cube[1][0]-1..cube[1][1]+1).member?(palette.color.g) && (cube[2][0]-1..cube[2][1]+1).member?(palette.color.b)
                     color_ex << palette
                   end
                 end
                   if color_ex.count > 0
-                    cube_define << [color_ex.count, set_cube.index(cube)]   
                     cube_array << [color_ex.count, set_cube.index(cube), color_ex]
-                  end                
+                  end
             end
-          cube_array_repeat = cube_define.max
+          cube_array_repeat = cube_array.max
           min_r = set_cube[cube_array_repeat[1]][0][0]
           max_r = set_cube[cube_array_repeat[1]][0][1]
           min_g = set_cube[cube_array_repeat[1]][1][0]
           max_g = set_cube[cube_array_repeat[1]][1][1]
           min_b = set_cube[cube_array_repeat[1]][2][0]
           max_b = set_cube[cube_array_repeat[1]][2][1]
-        end  
+        end 
+      debugger        
       end
 
+      debugger
       cube_array.each do |array|
-        find_color = []
-        color_val = []
-        max_count = []
+        color_r = 0
+        color_g = 0
+        color_b = 0 
+        sum = 0 
           array[2].each do |palette|
-            color_val << palette.color_id
+            color_r += palette.color.r
+            color_g += palette.color.g
+            color_b += palette.color.b
+            sum += 1
           end
-          color_val.uniq.each do |val|
-            max_count << [original_palettes.where(:color_id => val).count, val]
+        dist = []
+          d_palette.each do |cal|
+            dist << ((cal.r-(color_r/sum))**2+(cal.g-(color_g/sum)**2)+(cal.b-(color_b/sum)**2))
           end
-          color_id = max_count.max[1]
-          array[2].each do |ex|
-            palette = original_palettes.find(ex.id)
-            palette.color_id = color_id
-            palette.save
-          end
-      end
-          
+          color = Color.find(dist.index(dist.min)+1)
+            array[2].each do |palette|
+              palette.color_id = color.id
+              palette.save
+            end
+      end 
+
       redirect_to dotimage_path(@dotimage)
   end
 
