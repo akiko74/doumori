@@ -2,7 +2,7 @@ Doumori::Application.routes.draw do
 
 
   resources :dotimages
-  root :to => 'dotimage#index'
+  root :to => 'dotimages#new'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

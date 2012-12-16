@@ -2,7 +2,7 @@ class Dotimage < ActiveRecord::Base
   attr_accessible :name, :resized_image
   has_attached_file :resized_image, :styles => { :small => ["32x32#", :png],:new_image => ["32x32#", :png], :enlarge => "320x320"},
   :storage => :s3,
-  :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+  :s3_credentials => "#{Rails.root}/config/s3.yml",
   :path => ":attachment/:id/:style.:extension"
 
   validates_attachment_content_type :resized_image, :content_type => ["image/jpeg", "image/jpg", "image/gif", "image/png"]

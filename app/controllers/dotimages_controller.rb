@@ -1,7 +1,9 @@
 # encoding: utf-8
+require 'open-uri'
 class DotimagesController < ApplicationController
 
   def index
+   redirect_to new_dotimage_path
   end
 
   def new
@@ -17,8 +19,8 @@ class DotimagesController < ApplicationController
   def create
     @dotimage = Dotimage.new(params[:dotimage])
     @dotimage.save
-        image = ChunkyPNG::Image.from_file(@dotimage.resized_image.path(:small))
-        new_image = ChunkyPNG::Image.from_file(@dotimage.resized_image.path(:new_image))
+        image = ChunkyPNG::Image.from_io(open(@dotimage.resized_image.url(:small)))
+        new_image = ChunkyPNG::Image.from_io(open(@dotimage.resized_image.url(:new_image)))
         d_palette = Color.all
         x = 0
         for x in 0..31
@@ -31,12 +33,10 @@ class DotimagesController < ApplicationController
               end
               new_color = Color.find(dist.index(dist.min)+1)
               @dotimage.palettes.create(:position_x => x, :position_y => y, :color_id => new_color.id)
-              new_image[x,y] = ChunkyPNG::Color.rgb(new_color.r, new_color.g, new_color.b)
               y = y + 1
             end
           x = x + 1
         end
-        new_image.save(@dotimage.resized_image.path(:new_image))
         @dotimage.save
         #@dotimageで使われているカラーを抽出し、RGBの配列をpaletteに格納する
        # palette = []

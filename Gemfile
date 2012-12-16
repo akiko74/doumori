@@ -7,6 +7,7 @@ gem 'paperclip', '~> 3.0'
 gem 'chunky_png'
 
 gem 'aws-s3'
+gem 'aws-sdk'
 
 group :assets do
   gem 'sass-rails'
