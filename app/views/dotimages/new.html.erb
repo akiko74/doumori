@@ -1,12 +1,16 @@
-<div class = 'row'>
-  <div class = 'span9'>ドット絵にしたいPNGファイルをアップロードします
- <div class = 'row'>
+<h1>「とびだせ！どうぶつの森」のマイデザインを画像から自動的に作るジェネレーターです。</h1><br>
+<h2>画像は正方形のものを使いましょう。<br>
+    GIF,JPEG,PNGに対応しています。<br>
+    画像の大きさは300px程度、100kb以下としてください。<br>
+　　ファイルは１時間で消えるので、保存したい場合は印刷かPDFなどに落としてください。<br>
+</h2>
+<br>
+<br>
+
+
  <%= form_for @dotimage do |f| %>
-  <div class = 'span2'><%= f.label :name %></div>
-  <div class = 'span3'><%= f.text_field :name %></div>
+  <div class = 'span2'><%#= f.label :name %></div>
+  <div class = 'span3'><%#= f.text_field :name %></div>
   <div class = 'span2'><%= f.file_field :resized_image %></div>
   <div class = 'span2'><%= f.submit %></div>
  <% end %>
- </div>
-</div>
-</div>

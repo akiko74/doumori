@@ -2,13 +2,15 @@
 <html lang='ja'>
 <head>
   <meta charset = 'utf-8'>
-  <title>とび森ドット絵クリエイター</title>
+  <title>とび森ドット絵ジェネレーター</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+<%= link_to(image_tag('/logo_doumori.png'), new_dotimage_path) %>
+<br >
 <%= yield %>
 
 </body>

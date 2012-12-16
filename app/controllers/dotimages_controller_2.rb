@@ -42,37 +42,53 @@ class DotimagesController < ApplicationController
         color_palettes = []
         original_palettes = @dotimage.palettes
         palettes = original_palettes.select(:color_id).uniq
-          palettes.each do |count|
-            sum = @dotimage.palettes.where(:color_id => count.color_id).count
-            color_palettes << [sum, count.color_id]
+
+        if palettes.count < 16
+          num = 0
+          palettes.each do |color_num|
+            num += 1
+              original_palettes.where(:color_id => color_id).each do |palette|
+                palette.palette_no = num
+                palette.save
+              end
           end
+            redirect_to dotimage_path(@dotimage) and return
+        end
+
+        palettes.each do |count|
+          sum = @dotimage.palettes.where(:color_id => count.color_id).count
+          color_palettes << [sum, count.color_id]
+        end
  
-        color_palettes_fix = []
+        new_palettes = []
         dist_const = 20
         dist_cal = Math::sqrt(dist_const**3)
-        until (color_palettes_fix.count < 15) && (color_palettes.count == 0) do
-          color_palettes = color_palettes.sort
-          z = color_palettes.first
-          ed_color = Color.find(z[1])
-          pixel_color = []
-          color_palettes.each do |diff|
-            st_color = Color.find(diff[1])
-            if Math::sqrt((st_color.r-ed_color.r)**2+(st_color.g-ed_color.g)**2+(st_color.b-ed_color.b)**2) < dist_cal
-              pixel_color << diff
-            end
-          end
-          if pixel_color || [] 
-            new_color_r = 0
-            new_color_g = 0
-            new_color_b = 0
-            sum = 0
-              pixel_color.each do|diff|
-                color = Color.find(diff[1])
-                new_color_r += color.r * diff[0]
-                new_color_g += color.g * diff[0]
-                new_color_b += color.b * diff[0]
-                sum = sum += diff[0]
+        until new_palettes.count == 15 do
+          until color_palettes.count == 0 do
+            color_palettes = color_palettes.sort
+            z = color_palettes.shift
+            ed_color = Color.find(z[1])
+            dist_all = []
+              color_palettes.each do |diff|
+                st_color = Color.find(diff[1])
+                dist = Math::sqrt((st_color.r-ed_color.r)**2+(st_color.g-ed_color.g)**2+(st_color.b-ed_color.b)**2)
+                dist_all << [dist, diff]
               end
+              if dist_all.min[0] < dist_cal
+                color_palettes.delete(dist_all.min[1])
+                new_palettes << [z[0]+dist_all.min[1][0], dist_all.min[1][1]]
+                if new_palettes.count + color_palettes.count == 15
+                  new_palettes += color_palettes and return
+              else
+                new_palettes << z
+                if new_palettes.count + color_palettes.count == 15
+                  new_palettes += color_palettes and return
+              end
+          end
+            color_palettes = new_palettes
+            new_palettes = []
+        end
+
             new_color = [new_color_r/sum, new_color_g/sum, new_color_b/sum]
             dist = []
               d_palette.each do |palette|
@@ -80,6 +96,7 @@ class DotimagesController < ApplicationController
               end
             new_color = Color.find(dist.index(dist.min)+1)
             color_palettes_fix << [sum, new_color.id]
+              unless color_palettes_fix.count < 16
               pixel_color.each do |exchange|
                 pixels = original_palettes.where(:color_id => exchange[1])
                   pixels.each do |change|
@@ -88,8 +105,11 @@ class DotimagesController < ApplicationController
                   end
                 color_palettes.delete(exchange)
               end
-          else
+              end
+          elsif color_palettes_fix > 16
             color_palettes_fix << z
+            color_palettes.shift
+          else
             color_palettes.shift
           end
           dist_const += 20

@@ -1,7 +1,7 @@
 body {
 text-align: center;
 font-family:'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro', 'Meiryo UI', 'メイリオ', Verdana, 'ＭＳ Ｐゴシック', Osaka,Arial, Helvetica, sans-serif;
-font-size:8px;/*基本の文字サイズ*/
+font-size:12px;/*基本の文字サイズ*/
 line-height:1;
 color:#444444; /*基本の文字色*/
 margin:auto;
@@ -39,13 +39,12 @@ vertical-align:top;
 
 /*タイトル文字*/
 h1 {
-font-size:40px;
+font-size:16px;
 line-height:1.2;
-color:#ffffff;
 font-weight:bold ;
 margin:0;
 padding:0;
-position:absolute; top:40px; left:60px;
+position:center;
 }
 
 /* タイトル下のテキスト文字サイズ*/
@@ -69,63 +68,63 @@ padding: 0px;
 margin: 5px 0px;
 }
 
+/*container*/
+#container {
+  width: 90%;
+}
+
+#image_box {
+  width: 200px;
+  float: left;
+}
+
+#dot_box {
+  width: 700px;
+  float: left;
+}
+
+#dot_box table {
+  font-size: 8px;
+  border: 1px;
+}
+
+#dot_box th, #dot_box td, #dot_box tr {
+  width: 15px;
+  height: 15px;
+}
+
+#palette_box {
+  width: 
+  float: right;
+}
+
+#palette_box table {
+  font-size: 12px;
+}
+
+#palette_box td, #palette_box tr {
+  width: 50px;
+  height:30px;
+}
+
+#container_fotter {
+  width: 100%;
+  clear: left;
+} 
+
 
 /*table*/
-table {
+/*table {
   border: 1px;
 }
 
 th, td {
-  width: 25px;
-  height: 25px;
+  width: 15px;
+  height: 15px;
+  font-size: 8px;
 }
+*/
 
-#whatsnew {
-  width:220px;
-  float:right;
-  margin-right:4px;
-  margin-top:4px;
-  border: 1px #9d9d9d solid;
-  background:#EEEEEE;
-  text-align:center;
-}
-
-#whatsnew_cont {
-  width:220px;
-  float:right;
-  margin-right:4px;
-  margin-top:4px;
-  line-height:1.5;
-  list-style: none;
-  text-align:left;
-}
-
-#whatsnew_cont dt {
-  font-weight:bold;
-}
-
-#whatsnew_cont dd {
-  padding: 0.2em;
-  margin-left: 1em;
-}
-
-#twitter {
-  width:220px;
-  float:right;
-  margin-right:4px;
-  margin-top:4px;
-  border: 1px #9d9d9d solid;
-  background:#EEEEEE;
-  text-align:center;
-}
-
-#twitter_cont {
-  width:220px;
-  float:right;
-  margin-right:4px;
-  margin-top:4px;
-  line-height:1.5;
-}
 
 /*中央コンテンツ設定*/
 

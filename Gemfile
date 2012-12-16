@@ -17,5 +17,9 @@ end
 
 group :test, :development do
   gem 'debugger'
+  gem 'capistrano', :require => false
 end
-  
+
+group :production do
+  gem 'passenger'
+end  
