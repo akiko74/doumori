@@ -6,6 +6,8 @@ gem 'paperclip', '~> 3.0'
 
 gem 'chunky_png'
 
+gem 'aws-s3'
+
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'

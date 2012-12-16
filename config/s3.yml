@@ -1,0 +1,14 @@
+development:
+  bucket: tobimori_dotpicture
+  access_key_id: AKIAJGOVLJYFRIULOTEA
+  secret_access_key: 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
+
+test:
+  bucket: tobimori_dotpicture
+  access_key_id: AKIAJGOVLJYFRIULOTEA
+  secret_access_key: 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
+
+production:
+  bucket: tobimori_dotpicture
+  access_key_id: AKIAJGOVLJYFRIULOTEA
+  secret_access_key: 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
