@@ -5,6 +5,7 @@ class DotimagesController < ApplicationController
   end
 
   def new
+    Dotimage.destroy_all(["created_at < ?", 1.hour.ago])
     @dotimage = Dotimage.new
 
     respond_to do |format|
@@ -56,7 +57,7 @@ class DotimagesController < ApplicationController
           end
         end
         redirect_to dotimage_path(@dotimage) and return
-        
+
         #median cut法のためpalette内の最小値/最大値を格納する
       else
         max_r = image_palettes.max_by {|red| red.color.r}.color.r #rの最大値がはいる#
@@ -171,6 +172,9 @@ class DotimagesController < ApplicationController
   end
 
   def update
+  end
+
+  def destroy
   end
 
 end
