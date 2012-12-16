@@ -33,8 +33,8 @@
 <tbody>
 <% @color_palettes.each do |color| %>
   <tr>
-  <td><%= @palettes_order.find_by_color_id(color.color.id).palette_no %></td>
-  <td bgcolor="<%= color.color.hex %>"><%= color.color.name %></td>
+  <td><%= @palettes_order.find_by_color_id(color).palette_no %></td>
+  <td bgcolor="<%= Color.find(color).hex %>"><%= Color.find(color).name %></td>
   </tr>
   <% end %>
 </tbody>

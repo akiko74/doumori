@@ -168,7 +168,7 @@ class DotimagesController < ApplicationController
   def show
     @dotimage = Dotimage.find(params[:id])
     @palettes_order = @dotimage.palettes.order('palette_no ASC')
-    @color_palettes = @palettes_order.select(:color_id).uniq
+    @color_palettes = @palettes_order.map(&:color_id).uniq
   end
 
   def update
