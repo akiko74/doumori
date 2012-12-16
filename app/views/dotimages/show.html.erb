@@ -33,7 +33,7 @@
 <tbody>
 <% @color_palettes.each do |color| %>
   <tr>
-  <td><%= @palettes_order.where(:color_id => color.color.id).first.palette_no %></td>
+  <td><%= @palettes_order.find_by_color_id(color.color.id).palette_no %></td>
   <td bgcolor="<%= color.color.hex %>"><%= color.color.name %></td>
   </tr>
   <% end %>
