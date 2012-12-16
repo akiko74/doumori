@@ -22,4 +22,6 @@ end
 
 group :production do
   gem 'passenger'
-end  
+  gem 'heroku'
+  gem 'pg'
+end
