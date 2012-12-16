@@ -1,7 +1,5 @@
 Doumori::Application.routes.draw do
 
-  resources :colors
-
 
   resources :dotimages
   root :to => 'dotimage#index'

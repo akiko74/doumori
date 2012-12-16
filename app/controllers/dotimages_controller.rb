@@ -5,7 +5,7 @@ class DotimagesController < ApplicationController
   end
 
   def new
-    Dotimage.destroy_all(["created_at < ?", 1.hour.ago])
+    Dotimage.destroy_all(["created_at < ?", 10.minutes.ago])
     @dotimage = Dotimage.new
 
     respond_to do |format|
