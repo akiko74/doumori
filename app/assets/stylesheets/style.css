@@ -110,157 +110,25 @@ margin: 5px 0px;
 #container_fotter {
   width: 100%;
   clear: left;
-} 
-
-
-/*table*/
-/*table {
-  border: 1px;
 }
 
-th, td {
-  width: 15px;
-  height: 15px;
-  font-size: 8px;
-}
-*/
-
-
-/*中央コンテンツ設定*/
-
-#main {
-  margin: 0px 230px;
-  border-right: 1px #9d9d9d solid;
-  border-left: 1px #9d9d9d solid;
-  border-top: 0px;
-  border-bottom: 0px;
-  padding-bottom: 32768px;
-  margin-bottom: -32768px;
-  background:#FFFFFF;
-}
-
-.slideshow {
-  width: 100%; 
-  margin:auto;
-}
-
-.slideshow img {
-  width:100%;
-  margin:auto;
-}
-
-.slideshowtop{
-  width:100%;
-  margin-left:auto;
-}
-
-.slideshowtop img{
-  width:720px;
-  height:540px;
-  margin-left:auto;
-
-}
-
-#main_cont {
-  width:100%;
-  line-height:1;
-  padding:5px 0px;
-  height:auto;
-}
-
-
-/*ヘッダー設定*/
-#header_pict {
-  margin:0px;
-  background-color:#FFC473;
-  width:100%;
-}
-
-#header_pict img {
-  width:100%;
-}
-
-#header_cont {
-  margin:0px;
-  background-color:#FFC473;
-  border-bottom:#9d9d9d solid 1px;
-  width:100%;
-  padding:5px 0px;
-}
 
 /*フッター設定*/
 #footer {
   padding:0px;
-  background-color: #FFC473;
-  border-bottom: #9d9d9d solid 1px;
   width: 90%;
   margin:auto;
   clear : both;
 }
 
-#footer p {
-   line-height:1.2;
-   font-family:Osaka,Verdana,Arial,Helvetica,sans-serif;
-   font-weight:normal;
-   margin:0px;
-   padding:5px 0px;
-   text-align:center;
-}
- 
-/*サムネイル表示*/
-
-ul.thumbnail { 
-	list-style-type: none;
-	padding: 0px;
-	margin:3px 2px 3px 3px;
-	 }
-
-ul.thumbnail li {
- float: left;
- margin: 2px;
- height: 100%;
- list-style-type: none;
+#footer table {
+  border: 1px;
+  float: left;
 }
 
-ul.thumbnail img {
-  width: 105px;
-/*  height: 80px; */
- margin: 2px 0px; 
-}
-
-ul.thumbnail li a { display: block; }
-
-
-/* 詳細ページコンテンツ設定 */
-#main h2 {
-  margin:auto;
-  line-height:3;
-  padding: 5px;
-  font-weight: bold;
-  font-size: 12px;
-  font-height: 1.5;
-  text-align:left;
-  }
-  
-#main p {
-   line-height:2;
-   font-family:Osaka,Verdana,Arial,Helvetica,sans-serif;
-   margin:0px;
-   padding:5px 5px;
-   color:#444444;
-   text-align:left;
-}
-
-
-#main img {
-  width: 100%;
-  margin: auto;
-}
-
-/*まだ未使用*/
-/*TABLEボーダー非表示*/
-/*table  {
-border:none;
+#footer tr, #footer, td {
+  height: 25px;
+  width: 25px;
 }
 
 

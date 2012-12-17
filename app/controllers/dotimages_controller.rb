@@ -12,7 +12,7 @@ class DotimagesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { reder json: @dotimage }
+      format.json { render json: @dotimage }
     end
   end
 
@@ -20,7 +20,7 @@ class DotimagesController < ApplicationController
     @dotimage = Dotimage.new(params[:dotimage])
     @dotimage.save
         image = ChunkyPNG::Image.from_io(open(@dotimage.resized_image.url(:small)))
-        new_image = ChunkyPNG::Image.from_io(open(@dotimage.resized_image.url(:new_image)))
+        #new_image = ChunkyPNG::Image.from_io(open(@dotimage.resized_image.url(:new_image)))
         d_palette = Color.all
         x = 0
         for x in 0..31
@@ -28,11 +28,16 @@ class DotimagesController < ApplicationController
             for y in 0..31
               color = ChunkyPNG::Color.to_truecolor_bytes(image[x,y])
               dist = []
-              d_palette.each do |palette|
-                dist << Math::sqrt((color[0]-palette.r)**2+(color[1]-palette.g)**2+(color[2]-palette.b)**2)
+              Color.where('r > ? AND r < ? AND g > ? AND g < ? AND b > ? AND b < ?', color[0]-50, color[0]+50, color[1]-50, color[1]+50, color[2]-50, color[2]+50).each do |palette|
+                dist << [Math::sqrt((color[0]-palette.r)**2+(color[1]-palette.g)**2+(color[2]-palette.b)**2), palette.id]
               end
-              new_color = Color.find(dist.index(dist.min)+1)
-              @dotimage.palettes.create(:position_x => x, :position_y => y, :color_id => new_color.id)
+              if dist == []
+                d_palette.each do |palette|
+                dist << [Math::sqrt((color[0]-palette.r)**2+(color[1]-palette.g)**2+(color[2]-palette.b)**2), palette.id]
+                end
+              end
+              new_color = dist.min[1]
+              @dotimage.palettes.create(:position_x => x, :position_y => y, :color_id => new_color)
               y = y + 1
             end
           x = x + 1
@@ -166,9 +171,11 @@ class DotimagesController < ApplicationController
   end
 
   def show
-    @dotimage = Dotimage.find(params[:id])
-    @palettes_order = @dotimage.palettes.order('palette_no ASC')
-    @color_palettes = @palettes_order.map(&:color_id).uniq
+    if @dotimage = Dotimage.find(params[:id])
+      @palettes_order = @dotimage.palettes.order('palette_no ASC')
+      @color_palettes = @palettes_order.map(&:color_id).uniq
+    else redirect_to new_dotimage_path
+    end
   end
 
   def update
