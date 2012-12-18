@@ -116,7 +116,7 @@ margin: 5px 0px;
 /*フッター設定*/
 #footer {
   padding:0px;
-  width: 90%;
+  width: 70%;
   margin:auto;
   clear : both;
 }
@@ -124,9 +124,10 @@ margin: 5px 0px;
 #footer table {
   border: 1px;
   float: left;
+  margin: 3px;
 }
 
-#footer tr, #footer, td {
+#footer tr, #footer td {
   height: 25px;
   width: 25px;
 }

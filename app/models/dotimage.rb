@@ -6,7 +6,7 @@ class Dotimage < ActiveRecord::Base
   :path => ":attachment/:id/:style.:extension"
 
   validates_attachment_content_type :resized_image, :content_type => ["image/jpeg", "image/jpg", "image/gif", "image/png"]
-  validates_attachment_size :resized_image, :less_than => 100.kilobytes
+  validates_attachment_size :resized_image, :less_than => 300.kilobytes
   has_many :palettes, :dependent => :delete_all, :validate => false
 
   def distance

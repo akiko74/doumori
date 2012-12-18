@@ -1,0 +1,27 @@
+<div id = "footer">
+  <% Color.all.each_with_index do |color, i| %>
+    <% if i < 144 %>
+      <% if (i % 9 ) == 0 %>
+      <table>
+      <% end %>
+        <% if (i % 3) == 0 %>
+          <tr>
+        <% end %>
+        <td bgcolor="<%= color.hex %>"><%= color.name %></td>
+        <% if (i % 3) == 2 %>
+          </tr>
+        <% end %>
+      <% if (i % 9) == 8 %>
+      </table>
+      <% end %>
+    <% end %>
+  <% end %>
+    <br>
+    <table>
+      <tr>
+        <% Color.where('name LIKE ?', 'W'+'%').each do |color| %>
+        <td bgcolor="<%= color.hex %>"><%= color.name %></td>
+        <% end %>
+      </tr>
+    </table>
+</div>
