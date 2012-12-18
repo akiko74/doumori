@@ -52,7 +52,7 @@ class DotimagesController < ApplicationController
         new_cubes = []
         cubes_fix = []
 
-      if image_palettes.count < 16
+      if original_palettes.map(&:color_id).uniq.count < 16
         color_no = 0
         image_palettes.each do |color|
           color_no += 1
@@ -61,7 +61,6 @@ class DotimagesController < ApplicationController
             palette.save
           end
         end
-        redirect_to dotimage_path(@dotimage) and return
 
         #median cut法のためpalette内の最小値/最大値を格納する
       else
@@ -130,7 +129,6 @@ class DotimagesController < ApplicationController
             color_array = cube_divide[2]
           end
         end
-      end
 
       color_no = 0
       new_cubes.each do |palette|
@@ -164,6 +162,7 @@ class DotimagesController < ApplicationController
         end
       color_no += 1
       end
+    end
       redirect_to dotimage_path(@dotimage)
   end
 
