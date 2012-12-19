@@ -4,6 +4,7 @@ font-family:'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro', 'Meiryo UI',
 font-size:12px;/*基本の文字サイズ*/
 line-height:1;
 color:#444444; /*基本の文字色*/
+background-color: #f8f8f8;
 margin:auto;
 width: 100%;
 }
@@ -107,7 +108,7 @@ margin: 5px 0px;
   height:30px;
 }
 
-#container_fotter {
+#container_footer {
   width: 100%;
   clear: left;
 }
@@ -133,6 +134,7 @@ margin: 5px 0px;
 }
 
 
+
 /*IE--BRバグ回避*/
 br  {
 letter-spacing:normal;
@@ -140,6 +142,7 @@ letter-spacing:normal;
 
 
 /*普通のテキストリンク-----------------*/
+
 a:link    {text-decoration:underline;color:#333399;}  /*テキストリンクの色*/
 a:visited {text-decoration:underline;color:#333399;}  /*訪問済みのリンクの色*/ 
 a:active  {text-decoration:underline;color:#333399;}   /*クリック時のリンクの色*/

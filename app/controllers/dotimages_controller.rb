@@ -20,7 +20,6 @@ class DotimagesController < ApplicationController
     @dotimage = Dotimage.new(params[:dotimage])
     @dotimage.save
         image = ChunkyPNG::Image.from_io(open(@dotimage.resized_image.url(:small)))
-        #new_image = ChunkyPNG::Image.from_io(open(@dotimage.resized_image.url(:new_image)))
         d_palette = Color.all
         x = 0
         for x in 0..31
@@ -70,7 +69,7 @@ class DotimagesController < ApplicationController
         min_g = image_palettes.min_by {|green| green.color.g}.color.g
         max_b = image_palettes.max_by {|blue| blue.color.b}.color.b
         min_b = image_palettes.min_by {|blue| blue.color.b}.color.b
-        #最大値を持つ辺の中央で分割し８個のcubeを作る
+        #最大値を持つ辺の中央で分割し2個のcubeを作る
 
         color_array = []
         image_palettes.each do |color|
@@ -170,7 +169,8 @@ class DotimagesController < ApplicationController
   end
 
   def show
-    if @dotimage = Dotimage.find(params[:id])
+      @dotimage = Dotimage.find_by_id(params[:id])
+    if @dotimage.present?
       @palettes_order = @dotimage.palettes.order('palette_no ASC')
       @color_palettes = @palettes_order.map(&:color_id).uniq
     else redirect_to new_dotimage_path
