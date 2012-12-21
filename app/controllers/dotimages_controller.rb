@@ -169,7 +169,12 @@ class DotimagesController < ApplicationController
   end
 
   def show
+    debugger
+    if (params[:dotimage]).present?
+      @dotimage = Dotimage.last
+    else
       @dotimage = Dotimage.find_by_id(params[:id])
+    end
     if @dotimage.present?
       @palettes_order = @dotimage.palettes.order('palette_no ASC')
       @color_palettes = @palettes_order.map(&:color_id).uniq
