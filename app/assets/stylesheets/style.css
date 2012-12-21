@@ -14,6 +14,10 @@ h1,h2,h3,p,div,ul,ol,li,dl,dd,dt,form,blockquote,pre,address{
   padding : 0;
 }
 
+#alert {
+color: #ff0000;
+}
+
 /*共通デザイン*/
 /*IMGボーダー非表示*/
 img  {
