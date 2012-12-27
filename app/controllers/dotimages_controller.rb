@@ -169,7 +169,6 @@ class DotimagesController < ApplicationController
   end
 
   def show
-    debugger
     if (params[:dotimage]).present?
       @dotimage = Dotimage.last
     else

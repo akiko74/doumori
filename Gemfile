@@ -5,6 +5,7 @@ gem 'mysql2'
 gem 'paperclip', '~> 3.0'
 
 gem 'chunky_png'
+gem 'qrio', :git => 'git://github.com/rubysolo/qrio.git'
 
 gem 'aws-s3'
 gem 'aws-sdk'
@@ -16,6 +17,10 @@ group :assets do
   gem 'jquery-rails'
   gem 'therubyracer'
   gem 'less-rails'
+end
+
+group :development do
+  gem 'meta_request'
 end
 
 group :test, :development do
