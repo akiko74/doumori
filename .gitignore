@@ -17,3 +17,4 @@
 Thumbs.db
 /vendor/bundle
 /public/system
+/config/s3.yml

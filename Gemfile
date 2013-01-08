@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.9'
+gem 'rails', '3.2.11'
 gem 'mysql2'
 gem 'paperclip', '~> 3.0'
 
@@ -26,6 +26,9 @@ end
 group :test, :development do
   gem 'debugger'
   gem 'capistrano', :require => false
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
 end
 
 group :production do
